@@ -1,7 +1,7 @@
 # import the function that will return an instance of a connection
 from mysqlconnection import connectToMySQL
 # model the class after the friend table from our database
-class User:
+class Users:
     def __init__( self , data ):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -12,10 +12,6 @@ class User:
     # Now we use class methods to query our database
     @classmethod
     def get_all(cls):
-        # query = "SELECT * FROM users WHERE email = %(email)s;"
-        # data = { 'email' : request.form['email'] }
-        # result = mysql.query_db(query, data)
-
         query = "SELECT * FROM users;"
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL('users_schema').query_db(query)
@@ -26,8 +22,8 @@ class User:
             users.append( cls(user) )
         return users
 
-    # @classmethod
-    # def save(cls, data):
-    #     query = "INSERT INTO friends ( first_name , last_name , occupation , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(occ)s , NOW() , NOW() );"
-    #     # data is a dictionary that will be passed into the save method from server.py
-    #     return connectToMySQL('first_flask').query_db( query, data )
+    @classmethod
+    def save(cls, data):
+        query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(email)s , NOW() , NOW() );"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('users_schema').query_db( query, data )
