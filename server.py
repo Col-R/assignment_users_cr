@@ -48,5 +48,13 @@ def delete_user(user_id):
     user = Users.get(data)
     return render_template('delete.html', user = user )
 
+@app.route('/users/<int:user_id>/destroy', methods = ['POST'])
+def destroy(user_id):
+   data = {
+   "id": user_id
+   }
+   Users.delete(data)
+   return redirect('/')
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -41,5 +41,5 @@ class Users:
 
     @classmethod
     def delete(cls, data):
-        query = 'DELETE FROM users WHERE id = %(id)s'
+        query = 'DELETE FROM users WHERE id = %(id)s;'
         return connectToMySQL('users_schema').query_db( query, data )
