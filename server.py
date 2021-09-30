@@ -35,6 +35,11 @@ def edit(user_id):
     user = Users.get(data)
     return render_template('edit.html', user = user )
 
+@app.route('/users/<int:user_id>/update', methods = ['POST'])
+def update_user(user_id):
+    Users.edit(request.form)
+    return redirect(f'/users/{user_id}/edit')
+
 # @app.route('result')
 # def result():
 
