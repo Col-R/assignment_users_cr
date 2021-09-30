@@ -40,8 +40,13 @@ def update_user(user_id):
     Users.edit(request.form)
     return redirect(f'/users/{user_id}/edit')
 
-# @app.route('result')
-# def result():
+@app.route('/users/<int:user_id>/delete')
+def delete_user(user_id):
+    data = {
+    "id": user_id
+    }
+    user = Users.get(data)
+    return render_template('delete.html', user = user )
 
 if __name__ == "__main__":
     app.run(debug=True)
