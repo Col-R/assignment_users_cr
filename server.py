@@ -14,9 +14,9 @@ def users():
 @app.route('/users/new')
 def new():
     return render_template('create.html')
+
 @app.route('/create_user', methods=["POST"])
 def create_user():
-    print (request.form)
     data = {
         "fname": request.form["fname"],
         "lname" : request.form["lname"],
@@ -26,6 +26,14 @@ def create_user():
     Users.save(data)
     # Don't forget to redirect after saving to the database.
     return redirect('/users')
+
+@app.route('/users/<int:user_id>/edit')
+def edit(user_id):
+    data = {
+    "id": user_id
+    }
+    user = Users.get(data)
+    return render_template('edit.html', user = user )
 
 # @app.route('result')
 # def result():
