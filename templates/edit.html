@@ -43,12 +43,13 @@
 
 </head>
 <body>
+  <h1 class="display-1 mx-5">Update User Info</h1>
   <div class="bootstrap-iso mx-4">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
           <form method="POST" action="/users/{{user.id}}/update">
-            <input type="hidden" name="" value="{{director.id}}">
+            <input type="hidden" name="id" value="{{user.id}}">
             <div class="form-group ">
               <label class="control-label " for="fname">
                 First Name
@@ -69,7 +70,7 @@
             </div>
             <div class="form-group">
               <div>
-                <input class="btn btn-success" name="submit" type="submit" value="edit user">
+                <input class="btn btn-success" name="submit" type="submit" value="Save Changes">
               </div>
                 <a class="btn btn-danger my-2" href="/">Go Back</a>
             </div>
